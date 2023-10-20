@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: sans-serif;
+        text-align: center;
+      }
+      .myBtn {
+        height: 30px;
+        width: 100px;
+        cursor: pointer;
+        color: white;
+        background-color: black;
+        border-radius: 10px;
+        letter-spacing: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.production.min.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.querySelector("#root");
+
+    let PrintData = () => {
+      let [text, setText] = React.useState("");
+
+      function mytext(event) {
+        setText(event.target.value);
+      }
+
+      function clearData(event) {
+        setText((event.target.value = ""));
+        txt.value = "";
+      }
+
+      return (
+        <>
+          <input
+            type="text"
+            name=""
+            placeholder="type something..."
+            id="txt"
+            onChange={mytext}
+          />
+          <h2>{text}</h2>
+          <button onClick={clearData} className="myBtn">
+            Clear
+          </button>
+        </>
+      );
+    };
+
+    let App = () => {
+      return (
+        <>
+          <h1>Type something...</h1>
+          <PrintData />
+        </>
+      );
+    };
+
+    let rootElement = ReactDOM.createRoot(root);
+    rootElement.render(<App />);
+  </script>
+</html>
