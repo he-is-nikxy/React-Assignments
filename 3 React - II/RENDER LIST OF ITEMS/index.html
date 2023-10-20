@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RENDER LIST OF ITEMS</title>
+    <style>
+        *{
+            font-family: sans-serif;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.production.min.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    let root = document.querySelector("#root");
+
+    function Skills(props) {
+        return props.arr.map((ele) => <li>{ele}</li>)
+      ;
+    };
+
+    let App = () => {
+      return (
+        <div>
+          <h1>RENDER LIST OF ITEMS</h1>
+          <h2>My Skills</h2>
+          <ul>
+            <Skills arr={["skill1", "skill2", "skill3"]} />
+          </ul>
+        </div>
+      );
+    };
+
+    let rootEle = ReactDOM.createRoot(root);
+    rootEle.render(<App />);
+  </script>
+</html>
