@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        text-align: center;
+        font-family: sans-serif;
+      }
+
+      .myBtn {
+        height: 40px;
+        width: 150px;
+        cursor: pointer;
+        color: white;
+        background-color: black;
+        border-radius: 10px;
+        letter-spacing: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.production.min.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.querySelector("#root");
+
+    let Counter = () => {
+      let [count, setCount] = React.useState(0);
+
+      let handleClick = () => {
+        setCount(count + 1);
+      };
+
+      return (
+        <>
+          <h1>Count is: {count}</h1>
+          <button onClick={handleClick} className="myBtn">
+            Click Me
+          </button>
+        </>
+      );
+    };
+
+    let App = () => {
+      return <Counter />;
+    };
+
+    let rootElement = ReactDOM.createRoot(root);
+    rootElement.render(<App />);
+  </script>
+</html>
