@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: sans-serif;
+      }
+      #container {
+        display: flex;
+        justify-content: space-around;
+      }
+      .nameFollow {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 50px;
+      }
+      .skills > img {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+      }
+      #img {
+        border-radius: 50%;
+      }
+      .followBtn {
+        height: 20px;
+        width: 70px;
+        background-color: black;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .para {
+        font-weight: 500;
+        letter-spacing: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.production.min.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.querySelector("#root");
+
+    let UserProfile = () => {
+      return (
+        <>
+          <div id="container">
+            <div id="content">
+              <div className="nameFollow">
+                <h2 className="name">Nikhil Khemani</h2>
+                <button className="followBtn">Follow</button>
+              </div>
+              <p className="para">Software Engineer</p>
+              <div className="skills">
+                <img
+                  src="https://masai-website-images.s3.ap-south-1.amazonaws.com/html_5_e17a3be25f.svg"
+                  alt=""
+                />
+                <img
+                  src="https://masai-website-images.s3.ap-south-1.amazonaws.com/css_3_3dbbdc86b6.svg"
+                  alt=""
+                />
+                <img
+                  src="https://masai-website-images.s3.ap-south-1.amazonaws.com/javascript_96690a83df.svg"
+                  alt="javascript"
+                />
+                <img
+                  src="https://masai-website-images.s3.ap-south-1.amazonaws.com/mongodb_8a65496daa.svg"
+                  alt=""
+                />
+                <img
+                  src="https://masai-website-images.s3.ap-south-1.amazonaws.com/nodejs_07d5eaa3a7.svg"
+                  alt=""
+                />
+                <img
+                  src="https://masai-website-images.s3.ap-south-1.amazonaws.com/react_fd582ea59b.svg"
+                  alt=""
+                />
+                <img
+                  src="https://masai-website-images.s3.ap-south-1.amazonaws.com/redux_f650f4cdbb.svg"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div>
+              <img
+                src="https://media.licdn.com/dms/image/D4D03AQH9lsj-AjkLHg/profile-displayphoto-shrink_800_800/0/1683802194226?e=2147483647&v=beta&t=eXTBQV8t3ymWp9MA1AZ5riduI_Td7LqVZM0a2UNrdfA"
+                alt="Nikhil Image"
+                width="200px"
+                id="img"
+              />
+            </div>
+          </div>
+        </>
+      );
+    };
+
+    let App = () => {
+      return (
+        <>
+          <UserProfile />
+        </>
+      );
+    };
+
+    let rootElement = ReactDOM.createRoot(root);
+    rootElement.render(<App />);
+  </script>
+</html>
