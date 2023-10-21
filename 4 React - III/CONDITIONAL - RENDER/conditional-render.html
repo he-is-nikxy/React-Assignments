@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CONDITIONAL RENDER</title>
+    <style>
+      * {
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.production.min.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.querySelector("#root");
+
+    const UserProfile = ({ rounded, hideName, name, avatarUrl }) => {
+      return (
+        <div>
+          {rounded ? (
+            <img
+              src={avatarUrl}
+              alt="User Avatar"
+              style={{ borderRadius: "50%" }}
+            />
+          ) : (
+            <img
+              src={avatarUrl}
+              alt="User Avatar"
+              style={{ borderRadius: "1rem" }}
+            />
+          )}
+
+          {!hideName ? <h1>{name}</h1> : null}
+        </div>
+      );
+    };
+
+    let App = () => {
+      return (
+        <>
+          <UserProfile
+            rounded={true}
+            hideName={false}
+            name="Nikhil Khemani"
+            avatarUrl="https://media.licdn.com/dms/image/D4D03AQH9lsj-AjkLHg/profile-displayphoto-shrink_800_800/0/1683802194226?e=2147483647&v=beta&t=eXTBQV8t3ymWp9MA1AZ5riduI_Td7LqVZM0a2UNrdfA"
+          />
+        </>
+      );
+    };
+
+    let rootElement = ReactDOM.createRoot(root);
+    rootElement.render(<App />);
+  </script>
+</html>
