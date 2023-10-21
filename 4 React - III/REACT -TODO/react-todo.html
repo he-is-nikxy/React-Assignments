@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REACT - TODO</title>
+    <style>
+      * {
+        font-family: sans-serif;
+        text-align: center;
+      }
+      .completeBtn {
+        background-color: black;
+        color: white;
+        width: 150px;
+        height: 30px;
+        margin: 20px;
+        cursor: pointer;
+      }
+      #container {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px;
+        display: flex;
+        justify-content: space-around;
+        background-color: aliceblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.production.min.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.querySelector("#root");
+
+    let Todo = () => {
+      let [task, setTask] = React.useState("");
+      let [todos, setTodos] = React.useState([]);
+
+      let taskInp = (event) => {
+        setTask(event.target.value);
+      };
+
+      let addTask = () => {
+        let newTask = {
+          id: Math.random(),
+          title: task,
+          status: false,
+        };
+        let newTaskArr = [...todos, newTask];
+        setTodos(newTaskArr);
+        txt.value = "";
+      };
+
+      let markComplete = () => {
+        {
+          stts.textContent = "Status: Completed";
+        }
+      };
+
+      let PrintData = () => {
+        return todos.map((ele) => (
+          <div id="container">
+            <h2>Unique ID: {ele.id}</h2>
+            <h2>Task Name: {ele.title}</h2>
+            <h4 id="stts">Status: {ele.status ? "Completed" : "Pending"}</h4>
+            <button onClick={markComplete} className="completeBtn">
+              Mark Complete
+            </button>
+          </div>
+        ));
+      };
+
+      return (
+        <>
+          <input
+            type="text"
+            name=""
+            id="txt"
+            placeholder="Enter Task"
+            onChange={taskInp}
+          />
+          <button onClick={addTask}>ADD</button>
+          <div>
+            <p>New Tasks:</p>
+            <PrintData />
+          </div>
+        </>
+      );
+    };
+
+    let App = () => {
+      return (
+        <>
+          <h1>TODO App</h1>
+          <Todo />
+        </>
+      );
+    };
+
+    let rootElement = ReactDOM.createRoot(root);
+    rootElement.render(<App />);
+  </script>
+</html>
