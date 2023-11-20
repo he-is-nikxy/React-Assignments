@@ -1,49 +1,74 @@
 import React, { useState } from "react";
+import "./Tasks.css"
 
-const Tasks = () => {
-  let [task, setTask] = useState("");
+let Tasks = () => {
+  let [task, setTask] = React.useState("");
+  let [todos, setTodos] = React.useState([]);
 
-  let [allTasks, setAllTasks] = useState([]);
+  let taskInp = (event) => {
+    setTask(event.target.value);
+  };
 
-  let login = (e) => {
-    e.preventDefault();
+  let addTask = () => {
+    let newTask = {
+      id: Math.random(),
+      title: task,
+      status: false,
+    };
+    let newTaskArr = [...todos, newTask];
+    setTodos(newTaskArr);
+    txt.value = "";
+  };
 
-    let newArr = { task: task };
-    setAllTasks([...allTasks, newArr]);
+  let markComplete = () => {
+    {
+      stts.textContent = "Status: Completed";
+    }
+  };
 
-    setTask("");
+  let markDelete = (id) => {
+    let myNewArr = todos.filter((ele) => id != ele.id);
+    setTodos(myNewArr);
+  };
+
+  let PrintData = () => {
+    return todos.map((ele) => (
+      <div id="container">
+        <h2>Unique ID: {ele.id}</h2>
+        <h2>Task Name: {ele.title}</h2>
+        <h4 id="stts">Status: {ele.status ? "Completed" : "Pending"}</h4>
+        <button onClick={markComplete} className="completeBtn">
+          Mark Complete
+        </button>
+        <button onClick={() => markDelete(ele.id)} className="deleteBtn">
+          Delete
+        </button>
+        
+      </div>
+    ));
   };
 
   return (
     <>
-      <form onSubmit={login}>
-        <div>
-          <label htmlFor="">Enter Tasks:</label>
-          <br />
-          <input
-            type="text"
-            name="task"
-            id="task"
-            placeholder="Enter Task"
-            value={task}
-            onChange={(eve) => setTask(eve.target.value)}
-          />
-        </div>
-
-        <button type="submit">Login</button>
-      </form>
+      <input
+        type="text"
+        name=""
+        id="txt"
+        placeholder="Enter Task"
+        onChange={taskInp}
+      />
+      <button onClick={addTask} className="addBtn">
+        ADD
+      </button>
       <div>
-        <h2>Tasks: </h2>
-        {allTasks.map((ele) => {
-          return (
-            <div>
-              <p>Tasks: {ele.task}</p>
-            </div>
-          );
-        })}
+        <p className="para">
+          <strong>N</strong>ew <strong>T</strong>asks :
+        </p>
+        <PrintData />
       </div>
     </>
   );
 };
 
-export default Tasks;
+
+export default Tasks
